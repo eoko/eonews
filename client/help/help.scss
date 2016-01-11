@@ -1,0 +1,19 @@
+//noinspection CssUnknownTarget
+@import "{}/client/_global.scss";
+
+.help {
+  section {
+    padding-left: 0;
+    padding-right: 0;
+
+    .list.list-inset {
+      .item.item-input {
+        background-color: $light;
+
+        input {
+          background-color: $light;
+        }
+      }
+    }
+  }
+}

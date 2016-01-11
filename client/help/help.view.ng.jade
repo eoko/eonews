@@ -1,0 +1,23 @@
+ion-view(ng-controller="helpCtrl").help
+    ion-nav-buttons(side="right")
+        button.button-clear.icon.ion-chevron-right(ui-sref="main" nav-direction="forward")
+    ion-content
+        header.image
+            img(src='assets/images/circle_einsteinx2.png')
+            i.icon.ion-chevron-down
+            p Un petit coup de pouce?
+        section
+            .list.list-inset
+                label.item.item-input
+                    i.icon.ion-search.placeholder-icon
+                    input(type="text" placeholder="Rechercher" ng-model="search.title")
+            ul
+                li.item.item-text-wrap(ng-repeat="help in helps | filter: search" ng-click="openHelp($index)") {{ help.title }}
+    script(id="my-modal.html" type="text/ng-template")
+        ion-modal-view
+            ion-header-bar
+                h1.title {{ help.title }}
+                button.button.button-clear.icon.ion-close(ng-click="closeHelp()")
+            ion-content
+                h3 {{ help.title }}
+                p {{ help.description}}

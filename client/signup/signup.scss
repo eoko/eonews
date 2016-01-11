@@ -1,0 +1,12 @@
+//noinspection CssUnknownTarget
+@import "{}/client/_vars.scss";
+
+.signup {
+  section {
+    text-align: left;
+
+    .icon.error {
+      color : red;
+    }
+  }
+}

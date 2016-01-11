@@ -1,0 +1,49 @@
+ion-view.signin(scroll="false")
+
+    ion-nav-buttons(side="left")
+        button.button-clear(ui-sref="help" nav-direction="forward") Aide
+    ion-nav-buttons(side="right")
+        button.button-clear.icon.ion-chevron-right(ui-sref="main" nav-direction="forward")
+
+    ion-content
+        header.image
+            img(src='assets/images/circle_lockerx2.png')
+            i.icon.ion-chevron-down
+            .provider
+                i.top.icon.ion-social-facebook(ng-click="mode='facebook'" ng-class="{selected: mode == 'facebook'}")
+                i.middle.icon.ion-social-github(ng-click="mode='github'" ng-class="{selected: mode == 'github'}")
+                i.icon.ion-paper-airplane(ng-click="mode='email'" ng-class="{selected: mode == 'email'}")
+                i.middle.icon.ion-social-twitter(ng-click="mode='twitter'" ng-class="{selected: mode == 'twitter'}")
+                i.top.ion-social-google(ng-click="mode='google'" ng-class="{selected: mode == 'google'}")
+        section
+            .email(ng-show="mode=='email'")
+                form.form.list(novalidate="" name="forms.form" ng-submit="login()")
+                    label.item.item-input
+                        input(required="" ng-model="user.username" ng-minlength="3" ng-maxlength="20" name="username" type="text" placeholder="john, john@acme.com..." eo-toggle-parent="selected")
+                        .icon.ion-ios-person-outline
+                    label.item.item-input
+                        input(required="" ng-model="user.password" ng-minlength="3" ng-maxlength="20" name="password" type="password" placeholder="•••••••" eo-toggle-parent="selected")
+                        .icon.ion-ios-locked-outline
+                    .buttons
+                        input.button.button-block.button-small.button-positive(type="submit" nav-direction="back" value="S'identifier")
+                        button.button.button-block.button-small.button-stable(ui-sref="signup" nav-direction="back") Vous n'avez pas de compte?
+
+            .facebook.form.list(ng-show="mode=='facebook'")
+                p Pour vous identifier avec Facebook, vous avez juste à cliquer sur le lien suivant.
+                .buttons
+                    button.button.button-block.button-small.button-positive(ng-click="loginWithFacebook()" nav-direction="back") Se connecter avec Facebook
+
+            .github.form.list(ng-show="mode=='github'")
+                p Pour vous identifier avec Github, vous avez juste à cliquer sur le lien suivant.
+                .buttons
+                    button.button.button-block.button-small.button-positive(ng-click="loginWithGithub()") Se connecter avec Github
+
+            .twitter.form.list(ng-show="mode=='twitter'")
+                p Pour vous identifier avec Twitter, vous avez juste à cliquer sur le lien suivant.
+                .buttons
+                    button.button.button-block.button-small.button-positive(ui-sref="signup" nav-direction="back") Se connecter avec Twitter
+
+            .google.form.list(ng-show="mode=='google'")
+                p Pour vous identifier avec Google, vous avez juste à cliquer sur le lien suivant.
+                .buttons
+                    button.button.button-block.button-small.button-positive(ui-sref="signup" nav-direction="back") Se connecter avec Google

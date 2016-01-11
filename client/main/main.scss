@@ -1,0 +1,44 @@
+//noinspection CssUnknownTarget
+@import "{}/client/_global.scss";
+
+.main {
+
+  button {
+    &.button-positive {
+      &.selected {
+        background-color: $light-positive;
+        color: $light;
+      }
+    }
+  }
+
+  section {
+    .slider {
+      color: $grey;
+      font-size: 12px;
+      min-height: 120px;
+      text-align: center;
+
+      .slider-pager {
+        font-size: 9px;
+
+        .slider-pager-page {
+          color: $light-grey;
+          width: 8px;
+
+          &.active {
+            color: $positive;
+          }
+        }
+      }
+    }
+  }
+
+  .bar.bar-light.bar-footer {
+    background-image: none;
+    color: $light-grey;
+    button {
+      font-size: 10px;
+    }
+  }
+}

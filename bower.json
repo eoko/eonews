@@ -1,0 +1,21 @@
+{
+  "name": "eoko",
+  "version": "0.0.0",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    ".meteor/local/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ng-lodash" : "~0.3.0"
+  },
+  "overrides": {
+    "angular": {
+      "main": [] 
+    }
+  }
+}

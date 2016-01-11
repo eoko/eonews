@@ -1,0 +1,22 @@
+ion-view.main(ng-controller="MainCtrl")
+    ion-nav-buttons(side="left")
+        button.button-clear(ui-sref="help" nav-direction="back") Aide
+    ion-content(scroll="false")
+            header.image
+                img(src='assets/images/circle_rocketx2.png')
+                i.icon.ion-chevron-down
+            section
+                row
+                    ion-slide-box
+                        ion-slide
+                            p Une application créée par Eoko pour partager sur le développement, l’industrialisation, la R&D et les applications Web.
+                        ion-slide
+                            p coucou b
+                row
+                    button.button.button-block.button-small.button-positive(ui-sref="signup" nav-direction="back") S'inscrire
+                    button.button.button-block.button-small.button-stable(ui-sref="signin" nav-direction="back") J'ai déjà un compte
+    ion-footer-bar.bar-light
+        button.button-clear.button-block(ui-sref="live")
+            i.icon.ion-chevron-down
+            br
+            | Je ne souhaite pas de compte

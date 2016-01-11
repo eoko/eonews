@@ -1,0 +1,227 @@
+@import '_vars.scss';
+
+html {
+  font-family: "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+}
+
+.view,
+.pane,
+.bar {
+  background-color: $stable;
+  text-align: center;
+}
+
+.bar {
+  &.bar-light {
+    background: $stable;
+    border: none;
+  }
+}
+
+header {
+  padding: 80px 40px 10px 40px;
+  &.image {
+    color: $grey;
+
+    img {
+      width: calc(100% - 160px);
+      margin: 0 80px;
+    }
+
+    i {
+      font-size: 9px;
+    }
+
+    p {
+      font-size: 13px;
+      text-align: center;
+      line-height: 15px;
+    }
+  }
+}
+
+section {
+  padding-left: 60px;
+  padding-right: 60px;
+
+  p {
+    font-size: 12px;
+    text-align: center;
+    color: $light-grey;
+  }
+
+  .button-small {
+    border-radius: 20px;
+    padding: 5px 30px;
+
+    &.button-positive {
+      background-color: $light;
+      border-color: $positive;
+      color: $positive;
+    }
+
+    &.button-stable {
+      background-color: $light;
+      border-color: $light-grey;
+      color: $grey;
+    }
+  }
+}
+
+footer {
+  .bar.bar-light.bar-footer {
+    background: $stable;
+    border: none;
+  }
+}
+
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+{
+  color: $grey;
+  background-color: $stable;
+}
+
+section {
+  .form {
+
+    select,
+    {
+      color: $grey;
+    }
+    label {
+      padding-bottom: 0;
+      background-color: $stable;
+    }
+
+    .item-select {
+
+      .input-label {
+        font-size: 14px;
+        color: $light-grey;
+      }
+
+      select {
+        visibility: hidden;
+        padding-right: 0;
+      }
+
+      &:after {
+        right: 4px;
+        color: $light-grey;
+      }
+    }
+
+    .item {
+      background-color: $stable;
+      color: $light-grey;
+      border-color: $light-grey;
+      border-width: 0 0 1px 0;
+      margin-bottom: 15px;
+      padding-top: 0;
+      padding-right: 0;
+      padding-left: 0;
+
+      &.item-toggle {
+        border: none;
+        height: 46px;
+        margin-bottom: 0;
+
+        div > span {
+          font-size: 14px;
+          line-height: 50px;
+        }
+      }
+
+      .toggle input:checked + .track {
+        background-color: $light-positive;
+        border-color: $positive;
+      }
+
+      &.item-divider {
+        color: $positive;
+        font-weight: bold;
+        font-size: 12px;
+        border: none;
+        background-color: $stable;
+        margin-top: 30px;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        min-height: 16px;
+      }
+
+      .icon {
+        background-color: $stable;
+        font-size: 22px;
+        margin-bottom: -2px;
+      }
+
+      input {
+        font-size: 14px;
+      }
+      ::-webkit-input-placeholder {
+        /* WebKit, Blink, Edge */
+        color: $light-grey;
+      }
+      :-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: $light-grey;
+        opacity: 1;
+      }
+      ::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: $light-grey;
+        opacity: 1;
+      }
+      :-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: $light-grey;
+      }
+
+      &.selected {
+        border-bottom: 1px solid $positive;
+        color: $positive;
+
+        .icon {
+          color: $positive;
+        }
+
+        input {
+          color: $positive;
+        }
+
+        ::-webkit-input-placeholder {
+          /* WebKit, Blink, Edge */
+          color: $positive;
+        }
+        :-moz-placeholder {
+          /* Mozilla Firefox 4 to 18 */
+          color: $positive;
+          opacity: 1;
+        }
+        ::-moz-placeholder {
+          /* Mozilla Firefox 19+ */
+          color: $positive;
+          opacity: 1;
+        }
+        :-ms-input-placeholder {
+          /* Internet Explorer 10-11 */
+          color: $positive;
+        }
+      }
+    }
+  }
+}

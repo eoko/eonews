@@ -1,0 +1,39 @@
+//noinspection CssUnknownTarget
+@import "{}/client/_global.scss";
+
+.signin {
+  section {
+    p {
+      margin-top: 10px;
+      margin-bottom: 30px;
+    }
+  }
+  header.image {
+    .provider {
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      i {
+        font-size: 32px;
+        color: $light-grey;
+        padding-right: 10px;
+        padding-left: 10px;
+        position: relative;
+
+        &.top {
+          top: -45px;
+          padding-right: 5px;
+          padding-left: 5px;
+        }
+
+        &.middle {
+          top: -10px;
+        }
+
+        &.selected {
+          color: $positive;
+        }
+      }
+    }
+  }
+}

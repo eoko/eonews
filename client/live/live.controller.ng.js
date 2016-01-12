@@ -1,7 +1,10 @@
-'use strict'
-
 angular.module('eokoApp')
-  .controller('liveCtrl', function ($scope, $meteor, $state, $ionicScrollDelegate, $ionicSideMenuDelegate) {
+  .controller('liveCtrl', function ($scope, $meteor, $reactive, $state,
+      $ionicScrollDelegate, $ionicSideMenuDelegate) {
+    'use strict'
+    var me = this;
+    $reactive(me).attach($scope);
+
     $scope.page = 1;
     $scope.perPage = 3;
     $scope.sort = {name_sort: 1};
@@ -14,8 +17,28 @@ angular.module('eokoApp')
     };
 
     $scope.things = $scope.$meteorCollection(function () {
-      return Things.find({}, {sort: $scope.getReactively('sort')});
+      return Things.find({}, {
+        sort: $scope.getReactively('sort')
+      });
     });
+
+    $scope.$watchCollection('things', function(things) {
+      angular.forEach(things, function(thing) {
+        if (!thing.tags) {
+          thing.tags = [{
+            text: "Javascript",
+            style: 'calm'
+          }, {
+            text: "Webapp",
+            style: 'royal'
+          }, {
+            text: "Développement",
+            style: 'assertive'
+          }];
+        }
+      })
+    });
+
     $meteor.autorun($scope, function () {
       $scope.$meteorSubscribe('things', {
         limit: parseInt($scope.getReactively('perPage')),
@@ -51,8 +74,11 @@ angular.module('eokoApp')
       }
     });
 
-
     $scope.toggleLeft = function() {
       $ionicSideMenuDelegate.toggleRight();
+    };
+
+    $scope.refreshList = function() {
+      debugger
     };
   });

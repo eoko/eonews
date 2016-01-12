@@ -6,6 +6,6 @@ angular.module('eokoApp')
   .state('signup', {
     url: '/signup',
     templateUrl: 'client/signup/signup.view.html',
-    controller: 'signupCtrl'
+    //controller: 'signupCtrl'
   });
 });

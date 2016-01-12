@@ -1,4 +1,4 @@
-.live {
+.eon-live {
   h1 {
     text-align: center;
   }
@@ -37,5 +37,22 @@
   }
   .menu.menu-left, .list a {
     border-color: transparent;
+  }
+
+  ion-list.articles {
+    ion-item {
+      text-align: left;
+      > .pills {
+        .button {
+          border-radius: 10px;
+          line-height: 10px;
+          min-height: 16px;
+          height: 20px;
+          margin: 0 4px;
+          padding: 4px 8px;
+          font-size: 10px;
+        }
+      }
+    }
   }
 }

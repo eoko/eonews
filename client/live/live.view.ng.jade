@@ -1,29 +1,29 @@
-ion-view(hide-nav-bar="true" ng-controller="liveCtrl")
-    ion-side-menus.live
+ion-view(hide-nav-bar="true")
+    ion-side-menus.eon-live
+        //ion-side-menu(side="left")
+        //    ion-header-bar.bar-light
+        //        .buttons
+        //        h1.title &nbsp;
+        //        .buttons
+        //            button.button-clear.icon.ion-ios-arrow-right(menu-close="")
+        //    ion-content
+        //        button.button.button-large.icon.ion-ios-refresh-outline
+        //        p Hello
+        //        h1.title Filtrer les catégories
+        //        h1.title Période
+        //        .item.item-divider Candy Bars
+        //        a.item(href="#") Butterfinger
+        //        .item.range.range-positive
+        //            i.icon.ion-ios-sunny-outline
+        //            input(type="range" name="volume" min="0" max="100" value="33")
+        //            i.icon.ion-ios-sunny
+        //    ion-footer-bar.bar-stable
+        //        .buttons
+        //            button.button(ng-click="logout()") Restaurer
+        //        h1.title &nbsp;
+        //        .buttons
+        //            button.button(ng-click="logout()") Sauvegarder
         ion-side-menu(side="left")
-            ion-header-bar.bar-light
-                .buttons
-                h1.title &nbsp;
-                .buttons
-                    button.button-clear.icon.ion-ios-arrow-right(menu-close="")
-            ion-content
-                button.button.button-large.icon.ion-ios-refresh-outline
-                p Hello
-                h1.title Filtrer les catégories
-                h1.title Période
-                .item.item-divider Candy Bars
-                a.item(href="#") Butterfinger
-                .item.range.range-positive
-                    i.icon.ion-ios-sunny-outline
-                    input(type="range" name="volume" min="0" max="100" value="33")
-                    i.icon.ion-ios-sunny
-            ion-footer-bar.bar-stable
-                .buttons
-                    button.button(ng-click="logout()") Restaurer
-                h1.title &nbsp;
-                .buttons
-                    button.button(ng-click="logout()") Sauvegarder
-        ion-side-menu(side="right")
             ion-header-bar.bar-light
                 .buttons
                     button.button-clear.icon.ion-ios-arrow-left(menu-close="")
@@ -52,21 +52,26 @@ ion-view(hide-nav-bar="true" ng-controller="liveCtrl")
                 h1.title &nbsp;
                 .buttons
                     button.button-clear.icon.ion-ios-person-outline(menu-toggle="right")
-            header
-                .list.list-inset
-                    .item.item-input
-                        i.icon.ion-search.placeholder-icon
-                        input(type="text" placeholder="Search")
-            section
-                row
-                    form(ng-submit='save()', name='form', novalidate='')
-                        .list
-                            label.item.item-input
-                                input(type='text', placeholder='Name', ng-model='newThing.name')
-                        button.button.button-block.button-positive(type='submit') Add
-                    .list
-                        .item.item-button-right(ng-repeat='thing in things')
-                            p {{ thing.name }}
-                            button.button.button-clear(ng-click='remove(thing)')
-                                i.icon.ion-star.energized
-                    p Total number of things: {{ things.length }}
+            //header
+            //    .list.list-inset
+            //        .item.item-input
+            //            i.icon.ion-search.placeholder-icon
+            //            input(type="text" placeholder="Search")
+            ion-content
+                ion-refresher(on-refresh="refreshList")
+                //.row
+                    //form(ng-submit='save()', name='form', novalidate='')
+                    //    .list
+                    //        label.item.item-input
+                    //            input(type='text', placeholder='Name', ng-model='newThing.name')
+                    //    button.button.button-block.button-positive(type='submit') Add
+                ion-list.articles
+                    ion-item(ng-repeat='thing in things')
+                        h2 {{thing.name}}
+                        p.abstract {{thing.name}}
+                        div.row.pills
+                            div.button.button-small.button-outline(
+                                ng-repeat="tag in thing.tags"
+                                class='button-{{tag.style}}') {{tag.text}}
+                //.row
+                p Total number of things: {{things.length}}

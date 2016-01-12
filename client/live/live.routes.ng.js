@@ -8,18 +8,18 @@ angular.module('eokoApp')
         templateUrl: 'client/live/live.view.html',
         controller: 'liveCtrl',
         data: {
-          navbar: true,
+          navbar: true
         },
         resolve: {
-          currentUser: function ($q) {
+          currentUser: function($q) {
             if (Meteor.userId() == null) {
               return $q.reject();
-            }
-            else {
+            } else {
               return $q.resolve();
             }
           }
         }
-
-      });
-  });
+      })
+    ;
+  })
+;

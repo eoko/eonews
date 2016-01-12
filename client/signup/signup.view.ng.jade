@@ -1,4 +1,4 @@
-ion-view.signup(ng-controller="signupCtrl")
+ion-view.signup
     ion-nav-buttons(side="left")
         button.button-clear(ui-sref="help" nav-direction="forward") Aide
     ion-nav-buttons(side="right")
@@ -8,7 +8,7 @@ ion-view.signup(ng-controller="signupCtrl")
                 img(src='assets/images/circle_id_cardx2.png')
                 i.icon.ion-chevron-down
                 p S'inscrire
-            section
+            section(ng-controller="signupCtrl")
                 form.form.list(name="form" novalidate="")
                     label.item.item-input
                         input(name="username" ng-model="user.username" type="text" required="" placeholder="{{form.sexe === 'Homme' ? 'john, ...' : 'jane, ...'}}" eo-toggle-parent="selected")

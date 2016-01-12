@@ -11,13 +11,21 @@ App.info({
 
 // Set up resources such as icons and launch screens.
 App.icons({
-  'iphone': 'public/assets/app/icons/icon-60.png',
-  'iphone_2x': 'public/assets/app/icons/icon-60@2x.png'
+  'iphone': 'public/assets/app/icons/Icon-60.png',
+  'iphone_2x': 'public/assets/app/icons/Icon-60@2x.png',
+  'android_ldpi': 'public/assets/app/icons/Icon-60.png',
+  'android_mdpi': 'public/assets/app/icons/Icon-60.png',
+  'android_hdpi': 'public/assets/app/icons/Icon-60@2x.png',
+  'android_xhdpi': 'public/assets/app/icons/Icon-60@2x.png'
 });
 
 App.launchScreens({
   'iphone': 'public/assets/app/splash/Default~iphone.png',
-  'iphone_2x': 'public/assets/app/splash/Default@2x~iphone.png'
+  'iphone_2x': 'public/assets/app/splash/Default@2x~iphone.png',
+  android_ldpi_portrait: 'public/assets/app/splash/Default-android.9.png',
+  android_mdpi_portrait: 'public/assets/app/splash/Default-android.9.png',
+  android_hdpi_portrait: 'public/assets/app/splash/Default-android.9.png',
+  android_xhdpi_portrait: 'public/assets/app/splash/Default-android.9.png'
 });
 
 // Set PhoneGap/Cordova preferences

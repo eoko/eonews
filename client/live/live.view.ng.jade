@@ -30,17 +30,25 @@ ion-view(hide-nav-bar="true")
                 h1.title &nbsp;
                 .buttons
                     //button.button Éditer
-            header.image
-                img(src='assets/images/circle_rocketx2.png')
-                i.icon.ion-chevron-down
-            .list.list-inset
-                button.button.button-block.icon.icon-person Check mail
-                a.item.item-icon-left
-                    | Check mail
-                    i.icon.ion-email
-                a.item.item-icon-left
-                    | Check mail
-                    i.icon.ion-email
+            ion-content
+                header.image
+                    img(src='assets/images/circle_rocketx2.png')
+                    p.user @{{user.username}}
+                //.bar.bar-subheader
+                h2.title Filtres
+                //.row
+                //    button.button.button-small Tous
+                //    div(style="flex: 1")
+                //    button.button.button-small Aucun
+                .list.tags
+                    ion-checkbox(
+                        ng-repeat="tag in tags"
+                        ng-model="tagChecked[tag._id]"
+                        class='{{tag.style}}') {{tag.text}}
+                //div.tag-pills
+                //    div.button.button-small.button-outline(
+                //        ng-repeat="tag in tags"
+                //        class='button-{{tag.style}}') {{tag.text}}
             ion-footer-bar.bar-assertive
                 h1.title &nbsp;
                 .buttons
@@ -67,13 +75,16 @@ ion-view(hide-nav-bar="true")
                     //            input(type='text', placeholder='Name', ng-model='newThing.name')
                     //    button.button.button-block.button-positive(type='submit') Add
                 ion-list.articles
-                    ion-item(ng-repeat='thing in things')
-                        .date {{thing.updatedAt|date}}
-                        h2 {{thing.name}}
-                        p.abstract {{thing.name}}
-                        div.row.pills
+                    ion-item(ng-repeat='thing in posts')
+                        .date {{thing.date|date}}
+                        h2 {{thing.title}}
+                        p.abstract {{thing|abstract}}
+                        div.tag-pills
                             div.button.button-small.button-outline(
                                 ng-repeat="tag in thing.tags"
                                 class='button-{{tag.style}}') {{tag.text}}
                 //.row
                 //p Total number of things: {{things.length}}
+
+pre {{posts|json}}
+pre {{things|json}}

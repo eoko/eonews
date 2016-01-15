@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 Meteor.publish('things', function(options, searchString) {
   var where = {

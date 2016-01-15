@@ -2,8 +2,14 @@ angular.module('eokoApp')
   .controller('liveCtrl', function ($scope, $meteor, $reactive, $state,
       $ionicScrollDelegate, $ionicSideMenuDelegate, $user) {
     'use strict'
+
+    $scope.subscribe('posts');
+    $scope.subscribe('tags');
+
     var me = this;
-    $reactive(me).attach($scope);
+    //$reactive(me).attach($scope);
+
+    $scope.logout = logout;
 
     $scope.user = $user;
 
@@ -12,17 +18,40 @@ angular.module('eokoApp')
     $scope.sort = {name_sort: 1};
     $scope.orderProperty = '1';
 
-    $scope.logout = function() {
-      $meteor.logout(function() {
-        $state.go('main');
-      });
-    };
+    $scope.tagChecked = {};
 
-    $scope.things = $scope.$meteorCollection(function () {
-      return Things.find({}, {
-        sort: $scope.getReactively('sort')
-      });
+    $scope.helpers({
+      posts: function() {
+        var posts = Posts.find().fetch();
+        var tagIds = Object.keys($scope.getReactively('tagChecked', true))
+          .filter(function(tagId) {
+            return $scope.tagChecked[tagId];
+          });
+        if (posts.length && tagIds.length) {
+          return posts.filter(function(post) {
+            return post.tags && tagIds.every(function(tagId) {
+                return post.tags.some(function(tag) {
+                  return tag._id === tagId;
+                });
+            });
+          });
+        }
+        return posts;
+      },
+      tags: function() {return Tags.find();}
     });
+
+    //$scope.$watchCollection('tags', function(tags) {
+    //  tags.forEach(function(tag) {
+    //    $scope.tagChecked[tag._id] = true;
+    //  });
+    //});
+
+    //$scope.things = $scope.$meteorCollection(function () {
+    //  return Things.find({}, {
+    //    sort: $scope.getReactively('sort')
+    //  });
+    //});
 
     $scope.$watchCollection('things', function(things) {
       angular.forEach(things, function(thing) {
@@ -83,4 +112,11 @@ angular.module('eokoApp')
     $scope.refreshList = function() {
       debugger
     };
-  });
+
+    function logout() {
+      $meteor.logout(function() {
+        $state.go('main');
+      });
+    }
+  })
+;

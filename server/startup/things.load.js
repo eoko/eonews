@@ -10,10 +10,12 @@ Meteor.startup(function() {
       'Simplicity Equals Productivity'
     ];
     things.forEach(function(thing) {
+      var now = new Date();
       Things.insert({
         name: thing,
         name_sort: thing.toLowerCase(),
-        createdAt: new Date()
+        createdAt: now,
+        updatedAt: now
       });
     });
   }

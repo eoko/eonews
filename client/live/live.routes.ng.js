@@ -11,11 +11,11 @@ angular.module('eokoApp')
           navbar: true
         },
         resolve: {
-          currentUser: function($q) {
+          $user: function($q) {
             if (Meteor.userId() == null) {
               return $q.reject();
             } else {
-              return $q.resolve();
+              return $q.resolve(Meteor.user());
             }
           }
         }

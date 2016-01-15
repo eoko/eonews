@@ -89,7 +89,7 @@ input[type="email"],
 input[type="url"],
 input[type="search"],
 input[type="tel"],
-input[type="color"],
+input[type="color"]
 {
   color: $grey;
   background-color: $stable;
@@ -98,8 +98,7 @@ input[type="color"],
 section {
   .form {
 
-    select,
-    {
+    select {
       color: $grey;
     }
     label {
@@ -223,5 +222,14 @@ section {
         }
       }
     }
+  }
+}
+
+.bar-positive {
+  .button, .button-clear {
+    color: #fff;
+  }
+  .user {
+    font-weight: bold;
   }
 }

@@ -1,9 +1,11 @@
 angular.module('eokoApp')
   .controller('liveCtrl', function ($scope, $meteor, $reactive, $state,
-      $ionicScrollDelegate, $ionicSideMenuDelegate) {
+      $ionicScrollDelegate, $ionicSideMenuDelegate, $user) {
     'use strict'
     var me = this;
     $reactive(me).attach($scope);
+
+    $scope.user = $user;
 
     $scope.page = 1;
     $scope.perPage = 3;

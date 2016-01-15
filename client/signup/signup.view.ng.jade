@@ -3,47 +3,47 @@ ion-view.signup
         button.button-clear(ui-sref="help" nav-direction="forward") Aide
     ion-nav-buttons(side="right")
         button.button-clear.icon.ion-chevron-right(ui-sref="main" nav-direction="forward")
-    ion-content(scroll="false")
-            header.image
-                img(src='assets/images/circle_id_cardx2.png')
-                i.icon.ion-chevron-down
-                p S'inscrire
-            section(ng-controller="signupCtrl")
-                form.form.list(name="form" novalidate="")
-                    label.item.item-input
-                        input(name="username" ng-model="user.username" type="text" required="" placeholder="{{form.sexe === 'Homme' ? 'john, ...' : 'jane, ...'}}" eo-toggle-parent="selected")
-                        .icon.ion-ios-person-outline(ng-class="{error: form.username.$invalid && form.username.$touched}")
+    ion-content
+        header.image
+            img(src='assets/images/circle_id_cardx2.png')
+            i.icon.ion-chevron-down
+            p S'inscrire
+        section(ng-controller="signupCtrl")
+            form.form.list(name="form" novalidate="")
+                label.item.item-input
+                    input(name="username" ng-model="user.username" type="text" required="" placeholder="{{form.sexe === 'Homme' ? 'john, ...' : 'jane, ...'}}" eo-toggle-parent="selected")
+                    .icon.ion-ios-person-outline(ng-class="{error: form.username.$invalid && form.username.$touched}")
 
-                    label.item.item-input
-                        input(name="email" ng-model="user.email" type="email" required="" placeholder="{{form.sexe === 'Homme' ? 'john@acme.com, ...' : 'jane@acme.com, ...'}}" eo-toggle-parent="selected")
-                        .icon.ion-ios-email-outline(ng-class="{error: form.email.$invalid && form.email.$touched}")
+                label.item.item-input
+                    input(name="email" ng-model="user.email" type="email" required="" placeholder="{{form.sexe === 'Homme' ? 'john@acme.com, ...' : 'jane@acme.com, ...'}}" eo-toggle-parent="selected")
+                    .icon.ion-ios-email-outline(ng-class="{error: form.email.$invalid && form.email.$touched}")
 
-                    label.item.item-input
-                        input(name="password" ng-model="user.password" type="password" required="" placeholder="•••••••" eo-toggle-parent="selected")
-                        .icon.ion-ios-locked-outline(ng-class="{error: form.password.$invalid && form.password.$touched}")
+                label.item.item-input
+                    input(name="password" ng-model="user.password" type="password" required="" placeholder="•••••••" eo-toggle-parent="selected")
+                    .icon.ion-ios-locked-outline(ng-class="{error: form.password.$invalid && form.password.$touched}")
 
-                    .item.item-divider(ng-hide='more') Mieux vous connaître
+                .item.item-divider(ng-hide='more') Mieux vous connaître
 
-                    label.item.item-select(ng-hide='more')
-                        .input-label {{form.sexe}}
-                        select(ng-model='form.sexe')
-                            option(value='Homme' selected) Homme
-                            option(value='Femme') Femme
+                label.item.item-select(ng-hide='more')
+                    .input-label {{form.sexe}}
+                    select(ng-model='form.sexe')
+                        option(value='Homme' selected) Homme
+                        option(value='Femme') Femme
 
-                    label.item.item-input(ng-hide='more')
-                        input(type="tel" placeholder="+33 612 668 919" eo-toggle-parent="selected")
-                        .icon.ion-iphone
+                label.item.item-input(ng-hide='more')
+                    input(type="tel" placeholder="+33 612 668 919" eo-toggle-parent="selected")
+                    .icon.ion-iphone
 
-                    label.item.item-input(ng-hide='more')
-                        input(type="date" placeholder="01/01/1970" eo-toggle-parent="selected")
-                        .icon.ion-ios-body-outline
+                label.item.item-input(ng-hide='more')
+                    input(type="date" placeholder="01/01/1970" eo-toggle-parent="selected")
+                    .icon.ion-ios-body-outline
 
-                    .item.item-divider(ng-hide='more') Communication
+                .item.item-divider(ng-hide='more') Communication
 
-                    ion-toggle(ng-hide='more') Inscription à la newsletter
-                    ion-toggle(ng-hide='more') Collecte des données
-                .row.submit
-                    .col
-                        button.button-block.button.button-small.button-stable(ng-click="more = !more") {{more ? '+' : '-'}}
-                    .col
-                        button.button-block.button.button-small.button-positive(ng-click="createUser()") S'inscrire
+                ion-toggle(ng-hide='more') Inscription à la newsletter
+                ion-toggle(ng-hide='more') Collecte des données
+            .actions.row.submit
+                .col
+                    button.button-block.button.button-small.button-stable(ng-click="more = !more") {{more ? '+' : '-'}}
+                .col
+                    button.button-block.button.button-small.button-positive(ng-click="createUser()") S'inscrire

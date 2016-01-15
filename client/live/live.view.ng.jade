@@ -24,12 +24,12 @@ ion-view(hide-nav-bar="true")
         //        .buttons
         //            button.button(ng-click="logout()") Sauvegarder
         ion-side-menu(side="left")
-            ion-header-bar.bar-light
+            ion-header-bar.bar-positive
                 .buttons
-                    button.button-clear.icon.ion-ios-arrow-left(menu-close="")
+                    //button.button.icon.ion-navicon-round(menu-close="")
                 h1.title &nbsp;
                 .buttons
-                    button.button-clear Éditer
+                    //button.button Éditer
             header.image
                 img(src='assets/images/circle_rocketx2.png')
                 i.icon.ion-chevron-down
@@ -46,19 +46,20 @@ ion-view(hide-nav-bar="true")
                 .buttons
                     button.button(ng-click="logout()") Se déconnecter
         ion-side-menu-content
-            ion-header-bar.bar-light
+            ion-header-bar.bar-positive
                 .buttons
-                    button.button-clear.icon.ion-ios-settings(menu-toggle="left")
-                h1.title &nbsp;
+                    button.button-clear.icon.ion-navicon-round(menu-toggle="left")
+                h1.title Flux
                 .buttons
-                    button.button-clear.icon.ion-ios-person-outline(menu-toggle="right")
+                    .button.button-clear.user {{user.username}}
+                    //button.button-clear.icon.ion-ios-person-outline(menu-toggle="right")
+
             //header
             //    .list.list-inset
             //        .item.item-input
             //            i.icon.ion-search.placeholder-icon
             //            input(type="text" placeholder="Search")
             ion-content
-                ion-refresher(on-refresh="refreshList")
                 //.row
                     //form(ng-submit='save()', name='form', novalidate='')
                     //    .list
@@ -67,6 +68,7 @@ ion-view(hide-nav-bar="true")
                     //    button.button.button-block.button-positive(type='submit') Add
                 ion-list.articles
                     ion-item(ng-repeat='thing in things')
+                        .date {{thing.updatedAt|date}}
                         h2 {{thing.name}}
                         p.abstract {{thing.name}}
                         div.row.pills
@@ -74,4 +76,4 @@ ion-view(hide-nav-bar="true")
                                 ng-repeat="tag in thing.tags"
                                 class='button-{{tag.style}}') {{tag.text}}
                 //.row
-                p Total number of things: {{things.length}}
+                //p Total number of things: {{things.length}}

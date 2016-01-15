@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('eokoApp')
-  .controller('signinCtrl', function ($scope, $meteor, $state, $ionicPopup, $ionicViewSwitcher, lodash) {
+  .controller('signinCtrl', function ($scope, $meteor, $state, $ionicPopup, $ionicViewSwitcher, lodash, $user) {
 
     // Init scope variables
     $scope.viewName = 'signin';
@@ -37,9 +37,12 @@ angular.module('eokoApp')
           if (error) {
             $ionicPopup.alert({
               title: 'Forumlaire incorrect',
-              template: 'Les informations que vous nous avez fournis ne sont pas correct.'
+              template: 'Les informations que vous avez fournies ne sont pas correctes.'
             });
           } else {
+            $user.setUser({
+              displayName: $scope.user.username
+            });
             $ionicViewSwitcher.nextDirection('forward');
             $state.go('live');
           }

@@ -41,6 +41,7 @@
 
   ion-list.articles {
     ion-item {
+      background-color: #fff;
       text-align: left;
       > .pills {
         .button {
@@ -53,6 +54,18 @@
           font-size: 10px;
         }
       }
+      > .date {
+        float: right;
+        font-size: 10px;
+        font-weight: bold;
+        color: #666;
+      }
+    }
+  }
+
+  ion-header-bar {
+    .user {
+      font-weight: bold;
     }
   }
 }

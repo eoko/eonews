@@ -1,0 +1,11 @@
+{
+  "githubToken": "for-github-api",
+  "github": {
+    "clientId": "for-github-login",
+    "secret": "github-secret"
+  },
+  "facebook": {
+    "appId": "facebook-app-id",
+    "secret": "facebook-secret"
+  }
+}

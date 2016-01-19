@@ -1,72 +1,48 @@
-ion-view(hide-nav-bar="true")
+ion-view
+    ion-nav-title Flux
+    ion-nav-buttons(side="right")
+        button.button-clear(ng-click="toggleUserMenu()")
+            i.icon.ion-ios-gear-outline
     ion-side-menus.eon-live
-        //ion-side-menu(side="left")
-        //    ion-header-bar.bar-light
-        //        .buttons
-        //        h1.title &nbsp;
-        //        .buttons
-        //            button.button-clear.icon.ion-ios-arrow-right(menu-close="")
-        //    ion-content
-        //        button.button.button-large.icon.ion-ios-refresh-outline
-        //        p Hello
-        //        h1.title Filtrer les catégories
-        //        h1.title Période
-        //        .item.item-divider Candy Bars
-        //        a.item(href="#") Butterfinger
-        //        .item.range.range-positive
-        //            i.icon.ion-ios-sunny-outline
-        //            input(type="range" name="volume" min="0" max="100" value="33")
-        //            i.icon.ion-ios-sunny
-        //    ion-footer-bar.bar-stable
-        //        .buttons
-        //            button.button(ng-click="logout()") Restaurer
-        //        h1.title &nbsp;
-        //        .buttons
-        //            button.button(ng-click="logout()") Sauvegarder
-        ion-side-menu(side="left")
-            ion-header-bar.bar-positive
-                .buttons
-                    //button.button.icon.ion-navicon-round(menu-close="")
-                h1.title &nbsp;
-                .buttons
-                    //button.button Éditer
+        ion-side-menu(side="right")
+            //ion-header-bar.bar-positive
+            //    .buttons
+            //        //button.button.icon.ion-navicon-round(menu-close="")
+            //    h1.title &nbsp;
+            //    .buttons
+            //        //button.button Éditer
             ion-content
                 header.image
                     img(src='assets/images/circle_rocketx2.png')
                     p.user @{{user.username}}
-                //.bar.bar-subheader
+                    div.article-meter-ct
+                        meter(max="{{stats.total}}" value="{{stats.read}}")
+                        span.stats-read {{stats.read}} lu{{stats.read > 1 ? 's' : ''}}
+                        span.stats-total {{stats.total}} article{{stats.total > 1 ? 's' : ''}}
                 h2.title Filtres
-                //.row
-                //    button.button.button-small Tous
-                //    div(style="flex: 1")
-                //    button.button.button-small Aucun
                 .list.tags
                     ion-checkbox(
                         ng-repeat="tag in tags"
                         ng-model="tagChecked[tag._id]"
                         class='{{tag.style}}') {{tag.text}}
-                //div.tag-pills
-                //    div.button.button-small.button-outline(
-                //        ng-repeat="tag in tags"
-                //        class='button-{{tag.style}}') {{tag.text}}
             ion-footer-bar.bar-assertive
                 h1.title &nbsp;
                 .buttons
                     button.button(ng-click="logout()") Se déconnecter
         ion-side-menu-content
-            ion-header-bar.bar-positive
-                .buttons
-                    button.button-clear.icon.ion-navicon-round(menu-toggle="left")
-                h1.title Flux
-                .buttons
-                    .button.button-clear.user {{user.username}}
-                    //button.button-clear.icon.ion-ios-person-outline(menu-toggle="right")
-
-            //header
-            //    .list.list-inset
-            //        .item.item-input
-            //            i.icon.ion-search.placeholder-icon
-            //            input(type="text" placeholder="Search")
+            //ion-header-bar.bar-positive(align-title="center")
+            //    //.buttons
+            //    //    button.button-clear.icon.ion-navicon-round(menu-toggle="left")
+            //    h1.title Flux
+            //    .buttons
+            //        .button.button-clear.user(menu-toggle="right") {{user.username}}
+            //        //button.button-clear.icon.ion-ios-person-outline(menu-toggle="right")
+            //
+            ////header
+            ////    .list.list-inset
+            ////        .item.item-input
+            ////            i.icon.ion-search.placeholder-icon
+            ////            input(type="text" placeholder="Search")
             ion-content
                 //.row
                     //form(ng-submit='save()', name='form', novalidate='')
@@ -75,14 +51,18 @@ ion-view(hide-nav-bar="true")
                     //            input(type='text', placeholder='Name', ng-model='newThing.name')
                     //    button.button.button-block.button-positive(type='submit') Add
                 ion-list.articles
-                    ion-item(ng-repeat='thing in posts')
-                        .date {{thing.date|date}}
-                        h2 {{thing.title}}
-                        p.abstract {{thing|abstract}}
+                    ion-item.item-icon-right(
+                            ng-repeat='post in posts' 
+                            ui-sref="article({id: post._id})"
+                            ng-class="{unread: !isRead(post)}")
+                        .date {{post.date|date}}
+                        h2 {{post.title}}
+                        p.abstract {{post|abstract}}
                         div.tag-pills
                             div.button.button-small.button-outline(
-                                ng-repeat="tag in thing.tags"
+                                ng-repeat="tag in post.tags"
                                 class='button-{{tag.style}}') {{tag.text}}
+                        i.icon.ion-ios-arrow-right.item-icon
                 //.row
                 //p Total number of things: {{things.length}}
 

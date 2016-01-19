@@ -85,6 +85,20 @@
     },
     "marked": {
       "version": "0.3.5"
+    },
+    "md5": {
+      "version": "2.0.0",
+      "dependencies": {
+        "charenc": {
+          "version": "0.0.1"
+        },
+        "crypt": {
+          "version": "0.0.1"
+        },
+        "is-buffer": {
+          "version": "1.0.2"
+        }
+      }
     }
   }
 }

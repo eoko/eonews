@@ -1,4 +1,6 @@
 .eon-live {
+  $positive: #5badf0;
+
   h1 {
     text-align: center;
   }
@@ -43,11 +45,18 @@
     ion-item {
       background-color: #fff;
       text-align: left;
-      > .date {
+      .date {
         float: right;
         font-size: 10px;
         font-weight: bold;
         color: #666;
+      }
+      border-left: 6px solid transparent;
+      &.unread {
+        border-left-color: $positive;
+      }
+      .item-icon {
+        color: #ddd;
       }
     }
   }
@@ -59,10 +68,34 @@
   }
 
   ion-side-menu > ion-content {
+    background-color: #F9F9F9;
+    header {
+      background-color: $positive;
+      color: #fff;
+      .article-meter-ct {
+        overflow: hidden;
+        font-size: 12px;
+        meter {
+          width: 100%;
+          height: 6px;
+          -webkit-appearance: none;
+          &::-webkit-meter-optimum-value,
+          &::-webkit-meter-bar {
+            border-radius: 3px;
+            background: #fff;
+          }
+          &::-webkit-meter-optimum-value {
+            background-color: #2684C6;
+          }
+        }
+        .stats-read {float: left;}
+        .stats-total {float: right;}
+      }
+    }
     h2 {
       font-size: 16px;
       font-weight: bold;
-      color: #5badf0;
+      color: $positive;
       text-align: center;
     }
     .list.tags {

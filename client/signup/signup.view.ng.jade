@@ -42,8 +42,9 @@ ion-view.signup
 
                 ion-toggle(ng-hide='more') Inscription à la newsletter
                 ion-toggle(ng-hide='more') Collecte des données
-            .actions.row.submit
-                .col
-                    button.button-block.button.button-small.button-stable(ng-click="more = !more") {{more ? '+' : '-'}}
-                .col
-                    button.button-block.button.button-small.button-positive(ng-click="createUser()") S'inscrire
+
+                .actions.row.submit
+                    //.col
+                    //    button.button-block.button.button-small.button-stable(ng-click="more = !more") {{more ? '+' : '-'}}
+                    .col
+                        button.button-block.button.button-small.button-positive(ng-click="createUser()") S'inscrire

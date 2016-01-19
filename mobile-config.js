@@ -32,5 +32,5 @@ App.launchScreens({
 App.setPreference('StatusBarOverlaysWebView', true);
 //App.setPreference('BackgroundColor', '0xff0000ff');
 //App.setPreference('HideKeyboardFormAccessoryBar', true);
-//App.setPreference('Orientation', 'default');
+App.setPreference('Orientation', 'portrait');
 //App.setPreference('Orientation', 'all', 'ios');

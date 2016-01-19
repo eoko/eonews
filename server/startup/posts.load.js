@@ -3,6 +3,7 @@
 var marked = Meteor.npmRequire('marked');
 var GitHubApi = Meteor.npmRequire('github');
 var cheerio = Meteor.npmRequire('cheerio');
+var md5 = Meteor.npmRequire('md5');
 
 var token;
 var userAgent = 'Eoko-Eonews-App',
@@ -10,6 +11,10 @@ var userAgent = 'Eoko-Eonews-App',
   repo = 'blog',
   branch = 'master',
   postDirectory = '_posts';
+
+if (Meteor.settings.githubToken) {
+  token = Meteor.settings.githubToken;
+}
 
 var github = new GitHubApi({
   version: '3.0.0',
@@ -58,7 +63,8 @@ Meteor.startup(function() {
     });
     var content = (new Buffer(source.content, 'base64')).toString();
 
-    var id = file.path.replace(/\s/g, '_');
+    //var id = file.path.replace(/\s/g, '_').replace(/\.md$/);
+    var id = md5(file.path);
     var record = Posts.findOne(id);
     var newRecord = !record;
 
@@ -76,9 +82,8 @@ Meteor.startup(function() {
     record.meta = post.meta;
     record.html = post.html;
 
-    var $ = cheerio.load(record.html);
     record.title = record.meta.title
-      || $('h1').first().text()
+      || cheerio.load(record.html)('h1').first().text()
       || file.path.replace(/_/g, ' ');
 
     record.tags = post.meta.tags || post.meta.categories || [];

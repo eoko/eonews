@@ -1,21 +1,22 @@
 
-ServiceConfiguration.configurations.upsert(
-  { service: "facebook" },
-  {
+if (Meteor.settings.facebook) {
+  ServiceConfiguration.configurations.upsert({
+    service: 'facebook'
+  }, {
     $set: {
-      appId: "103434933160950",
-      secret: "bcd70c690965d7611c005f0a3393055d"
+      appId: Meteor.settings.facebook.appId,
+      secret: Meteor.settings.facebook.secret
     }
-  }
-);
+  });
+}
 
-ServiceConfiguration.configurations.upsert(
-  { service: "github" },
-  {
+if (Meteor.settings.github) {
+  ServiceConfiguration.configurations.upsert({
+    service: 'github'
+  }, {
     $set: {
-      clientId: '95c22212628e31de32bc',
-      secret: '67ac413058c7bbe477158a2e2a4f7d4d7f259311'
+      clientId: Meteor.settings.github.clientId,
+      secret: Meteor.settings.github.secret
     }
-  }
-);
-
+  });
+}

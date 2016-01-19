@@ -1,0 +1,8 @@
+ion-view.eon-article
+  ion-nav-title Superb'article
+  ion-nav-buttons(side="left")
+    button.button-clear.icon.ion-chevron-left(ui-sref="live")
+  ion-nav-buttons(side="right")
+    button.button-clear {{username}}
+  ion-content
+    section(ng-bind-html="article.html")

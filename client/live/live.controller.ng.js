@@ -1,17 +1,18 @@
 angular.module('eokoApp')
   .controller('liveCtrl', function ($scope, $meteor, $reactive, $state,
-      $ionicScrollDelegate, $ionicSideMenuDelegate, $user) {
+      $ionicScrollDelegate, $ionicSideMenuDelegate) {
     'use strict'
 
     $scope.subscribe('posts');
-    $scope.subscribe('tags');
+    //$scope.subscribe('tags');
+    //$scope.subscribe('user-post-data');
 
-    var me = this;
+    //var me = this;
     //$reactive(me).attach($scope);
 
     $scope.logout = logout;
-
-    $scope.user = $user;
+    $scope.toggleUserMenu = toggleUserMenu;
+    $scope.isRead = isRead;
 
     $scope.page = 1;
     $scope.perPage = 3;
@@ -20,7 +21,12 @@ angular.module('eokoApp')
 
     $scope.tagChecked = {};
 
+    $scope.stats = null; // {total:..., read:...}
+
     $scope.helpers({
+      user: function() {
+        return Meteor.user();
+      },
       posts: function() {
         var posts = Posts.find().fetch();
         var tagIds = Object.keys($scope.getReactively('tagChecked', true))
@@ -41,6 +47,16 @@ angular.module('eokoApp')
       tags: function() {return Tags.find();}
     });
 
+    $scope.$watchCollection('posts', function(posts) {
+      // stats
+      $scope.stats = {
+        total: posts.length,
+        read: posts.reduce(function(sum, post) {
+          return sum + (isRead(post) ? 1 : 0);
+        }, 0)
+      };
+    });
+
     //$scope.$watchCollection('tags', function(tags) {
     //  tags.forEach(function(tag) {
     //    $scope.tagChecked[tag._id] = true;
@@ -53,34 +69,34 @@ angular.module('eokoApp')
     //  });
     //});
 
-    $scope.$watchCollection('things', function(things) {
-      angular.forEach(things, function(thing) {
-        if (!thing.tags) {
-          thing.tags = [{
-            text: "Javascript",
-            style: 'calm'
-          }, {
-            text: "Webapp",
-            style: 'royal'
-          }, {
-            text: "Développement",
-            style: 'assertive'
-          }];
-        }
-      })
-    });
+    //$scope.$watchCollection('things', function(things) {
+    //  angular.forEach(things, function(thing) {
+    //    if (!thing.tags) {
+    //      thing.tags = [{
+    //        text: "Javascript",
+    //        style: 'calm'
+    //      }, {
+    //        text: "Webapp",
+    //        style: 'royal'
+    //      }, {
+    //        text: "Développement",
+    //        style: 'assertive'
+    //      }];
+    //    }
+    //  })
+    //});
 
-    $meteor.autorun($scope, function () {
-      $scope.$meteorSubscribe('things', {
-        limit: parseInt($scope.getReactively('perPage')),
-        skip: parseInt(($scope.getReactively('page') - 1) * $scope.getReactively('perPage')),
-        sort: $scope.getReactively('sort')
-      }, $scope.getReactively('search')).then(function () {
-        $scope.thingsCount = $scope.$meteorObject(Counts, 'numberOfThings', false);
-      });
-    });
+    //$meteor.autorun($scope, function () {
+    //  $scope.$meteorSubscribe('things', {
+    //    limit: parseInt($scope.getReactively('perPage')),
+    //    skip: parseInt(($scope.getReactively('page') - 1) * $scope.getReactively('perPage')),
+    //    sort: $scope.getReactively('sort')
+    //  }, $scope.getReactively('search')).then(function () {
+    //    $scope.thingsCount = $scope.$meteorObject(Counts, 'numberOfThings', false);
+    //  });
+    //});
 
-    $meteor.session('thingsCounter').bind($scope, 'page');
+    //$meteor.session('thingsCounter').bind($scope, 'page');
 
     $scope.save = function () {
       if ($scope.form.$valid) {
@@ -117,6 +133,15 @@ angular.module('eokoApp')
       $meteor.logout(function() {
         $state.go('main');
       });
+    }
+
+    function toggleUserMenu() {
+      $ionicSideMenuDelegate.toggleRight();
+    }
+
+    function isRead(post) {
+      var userData = UserPostData.findOne({postId: post._id});
+      return userData && userData.read;
     }
   })
 ;

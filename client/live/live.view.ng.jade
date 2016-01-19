@@ -1,25 +1,16 @@
-ion-view
-    ion-nav-title Flux
-    ion-nav-buttons(side="right")
-        button.button-clear(ng-click="toggleUserMenu()")
-            i.icon.ion-ios-gear-outline
-    ion-side-menus.eon-live
-        ion-side-menu(side="right")
-            //ion-header-bar.bar-positive
-            //    .buttons
-            //        //button.button.icon.ion-navicon-round(menu-close="")
-            //    h1.title &nbsp;
-            //    .buttons
-            //        //button.button Éditer
-            ion-content
-                header.image
-                    img(src='assets/images/circle_rocketx2.png')
+ion-view.eon-live(view-title="Flux" hide-back-button="!anonymous")
+    ion-nav-buttons(side="left")
+        button.button-clear(ng-click="toggleUserMenu()" ng-if="!anonymous") Menu
+    ion-side-menus
+        ion-side-menu(side="left")
+            ion-content(scroll="false")
+                header
                     p.user @{{user.username}}
                     div.article-meter-ct
                         meter(max="{{stats.total}}" value="{{stats.read}}")
                         span.stats-read {{stats.read}} lu{{stats.read > 1 ? 's' : ''}}
                         span.stats-total {{stats.total}} article{{stats.total > 1 ? 's' : ''}}
-                h2.title Filtres
+                h2.title Catégories
                 .list.tags
                     ion-checkbox(
                         ng-repeat="tag in tags"
@@ -28,33 +19,21 @@ ion-view
             ion-footer-bar.bar-assertive
                 h1.title &nbsp;
                 .buttons
-                    button.button(ng-click="logout()") Se déconnecter
+                    button.button(ng-click="logout()" menu-close) Se déconnecter
         ion-side-menu-content
-            //ion-header-bar.bar-positive(align-title="center")
-            //    //.buttons
-            //    //    button.button-clear.icon.ion-navicon-round(menu-toggle="left")
-            //    h1.title Flux
-            //    .buttons
-            //        .button.button-clear.user(menu-toggle="right") {{user.username}}
-            //        //button.button-clear.icon.ion-ios-person-outline(menu-toggle="right")
-            //
-            ////header
-            ////    .list.list-inset
-            ////        .item.item-input
-            ////            i.icon.ion-search.placeholder-icon
-            ////            input(type="text" placeholder="Search")
             ion-content
-                //.row
-                    //form(ng-submit='save()', name='form', novalidate='')
-                    //    .list
-                    //        label.item.item-input
-                    //            input(type='text', placeholder='Name', ng-model='newThing.name')
-                    //    button.button.button-block.button-positive(type='submit') Add
+                ion-refresher(on-refresh="refreshList()")
+                .news-indicator(ng-show="unloadedPostsCount > 0")
+                    .ion-arrow-down-c
+                    span {{unloadedPostsCount}} {{unloadedPostsCount > 1 ? "nouveaux articles" : "nouvel article"}}
+                    .ion-arrow-down-c
                 ion-list.articles
                     ion-item.item-icon-right(
-                            ng-repeat='post in posts' 
+                            ng-repeat='post in posts'
                             ui-sref="article({id: post._id})"
-                            ng-class="{unread: !isRead(post)}")
+                            ng-class="{unread: !isRead(post), updated: isUpdated(post)}"
+                        )
+                        .read-indicator
                         .date {{post.date|date}}
                         h2 {{post.title}}
                         p.abstract {{post|abstract}}
@@ -63,8 +42,3 @@ ion-view
                                 ng-repeat="tag in post.tags"
                                 class='button-{{tag.style}}') {{tag.text}}
                         i.icon.ion-ios-arrow-right.item-icon
-                //.row
-                //p Total number of things: {{things.length}}
-
-pre {{posts|json}}
-pre {{things|json}}

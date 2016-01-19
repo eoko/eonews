@@ -9,8 +9,6 @@ angular.module('eokoApp')
 
         $scope.subscribe('posts');
 
-        $scope.username = Meteor.user().username;
-
         $scope.helpers({
           article: function() {
             var post = Posts.findOne($stateParams.id);
@@ -20,10 +18,6 @@ angular.module('eokoApp')
             return post;
           }
         });
-
-        $scope.$watch('article', function(article) {
-          console.log(article, $scope.article === article);
-        }, true);
       }
     });
   })

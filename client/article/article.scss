@@ -1,5 +1,15 @@
 .eon-article {
   ion-content section {
-    padding: 5px;
+    padding: 20px;
+  }
+
+  // reset article style
+  background-color: #fff;
+  &, p {
+    color: rgb(102,102,102);
+  }
+
+  #post-body:first-child {
+    margin-top: 0;
   }
 }

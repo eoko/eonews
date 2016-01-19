@@ -19,7 +19,7 @@ html {
 }
 
 header {
-  padding: 80px 40px 10px 40px;
+  padding: 60px 40px 10px 40px;
   &.image {
     color: $grey;
 
@@ -221,6 +221,14 @@ section {
           color: $positive;
         }
       }
+    }
+  }
+}
+
+ion-header-bar {
+  .button-clear {
+    &.button-icon, .icon {
+      font-size: 22px;
     }
   }
 }

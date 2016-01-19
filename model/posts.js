@@ -24,7 +24,7 @@ Meteor.methods({
       postId: post._id
     }, {
       $set: {
-        read: true
+        read: post.updatedAt || post.createdAt
       }
     });
   }

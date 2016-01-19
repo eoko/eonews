@@ -1,10 +1,4 @@
-ion-view.signin(scroll="false")
-
-    ion-nav-buttons(side="left")
-        button.button-clear(ui-sref="help" nav-direction="forward") Aide
-    ion-nav-buttons(side="right")
-        button.button-clear.icon.ion-chevron-right(ui-sref="main" nav-direction="forward")
-
+ion-view.signin(scroll="false" view-title="")
     ion-content
         header.image
             img(src='assets/images/circle_lockerx2.png')
@@ -19,7 +13,7 @@ ion-view.signin(scroll="false")
             .email(ng-show="mode=='email'")
                 form.form.list(novalidate="" name="forms.form" ng-submit="login()")
                     label.item.item-input
-                        input(required="" ng-model="user.username" ng-minlength="3" ng-maxlength="20" name="username" type="text" placeholder="john, john@acme.com..." eo-toggle-parent="selected")
+                        input(required="" ng-model="user.username" ng-minlength="3" ng-maxlength="20" name="username" type="text" placeholder="john, john@acme.com..." eo-toggle-parent="selected" autofocus)
                         .icon.ion-ios-person-outline
                     label.item.item-input
                         input(required="" ng-model="user.password" ng-minlength="3" ng-maxlength="20" name="password" type="password" placeholder="•••••••" eo-toggle-parent="selected")

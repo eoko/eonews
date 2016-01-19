@@ -1,6 +1,4 @@
-ion-view.main(ng-controller="MainCtrl")
-    ion-nav-buttons(side="left")
-        button.button-clear(ui-sref="help" nav-direction="back") Aide
+ion-view.main(view-title="" hide-back-button="true")
     ion-content(scroll="false")
             header.image
                 img(src='assets/images/circle_rocketx2.png')
@@ -13,8 +11,8 @@ ion-view.main(ng-controller="MainCtrl")
                         ion-slide
                             p coucou b
                 row
-                    button.button.button-block.button-small.button-positive(ui-sref="signup" nav-direction="back") S'inscrire
-                    button.button.button-block.button-small.button-stable(ui-sref="signin" nav-direction="back") J'ai déjà un compte
+                    button.button.button-block.button-small.button-positive(ui-sref="signup") S'inscrire
+                    button.button.button-block.button-small.button-stable(ui-sref="signin") J'ai déjà un compte
     ion-footer-bar.bar-light
         button.button-clear.button-block(ui-sref="live")
             i.icon.ion-chevron-down

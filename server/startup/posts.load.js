@@ -4,17 +4,14 @@ var marked = Meteor.npmRequire('marked');
 var GitHubApi = Meteor.npmRequire('github');
 var cheerio = Meteor.npmRequire('cheerio');
 var md5 = Meteor.npmRequire('md5');
+var fs = Meteor.npmRequire('fs');
 
-var token;
+var token = Meteor.settings.githubToken;
 var userAgent = 'Eoko-Eonews-App',
   user = 'eoko',
   repo = 'blog',
   branch = 'master',
   postDirectory = '_posts';
-
-if (Meteor.settings.githubToken) {
-  token = Meteor.settings.githubToken;
-}
 
 var github = new GitHubApi({
   version: '3.0.0',
@@ -27,6 +24,7 @@ var tagStyles = ['calm', 'royal', 'assertive', 'positive', 'balanced', 'energize
 
 Meteor.startup(function() {
 
+  var now = new Date;
   var tagMap = initTags();
 
   var ids = [];
@@ -41,6 +39,7 @@ Meteor.startup(function() {
   });
 
   function initTags() {
+    initTagsConfig();
     var map = {};
     tagStyles.forEach(function(style) {
       map[style] = 0;
@@ -93,11 +92,13 @@ Meteor.startup(function() {
       ? new Date(record.meta.date)
       : record.createdAt;
 
+    record.published = !(post.meta.date && post.meta.date > now);
+
     if (newRecord) {
       console.log('inserted', record._id);
       Posts.insert(record);
     } else {
-      Posts.update(file.path, record);
+      Posts.update(id, record);
       console.log('updated', record._id);
     }
 
@@ -224,4 +225,9 @@ function sync(fn, preventAuth) {
   } else {
     return data.result;
   }
+}
+
+function initTagsConfig() {
+  //var doc = YAML.safeLoad(fs.readFileSync(__dirname + '/../../categories-config.yml', 'utf8'));
+  //console.log(doc)
 }

@@ -3,6 +3,11 @@
   <base href="/">
 </head>
 <body>
-<ion-nav-bar class="bar-positive" align-title="center"></ion-nav-bar>
+<ion-nav-bar bar-positive-content align-title="center">
+  <ion-nav-back-button></ion-nav-back-button>
+  <ion-nav-buttons side="right">
+    <button class="button-clear" ui-sref="help" ng-if="!hideHelp">Aide</button>
+  </ion-nav-buttons>
+</ion-nav-bar>
 <ion-nav-view animation="slide-bottom-top"></ion-nav-view>
 </body>

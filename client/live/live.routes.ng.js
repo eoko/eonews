@@ -6,19 +6,7 @@ angular.module('eokoApp')
       .state('live', {
         url: '/live',
         templateUrl: 'client/live/live.view.html',
-        controller: 'liveCtrl',
-        data: {
-          navbar: true
-        },
-        resolve: {
-          $user: function($q) {
-            if (Meteor.userId() == null) {
-              return $q.reject();
-            } else {
-              return $q.resolve(Meteor.user());
-            }
-          }
-        }
+        controller: 'liveCtrl'
       })
     ;
   })

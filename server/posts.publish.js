@@ -2,7 +2,9 @@
 
 Meteor.publish('posts', function() {
   return [
-    Posts.find(),
+    Posts.find({
+      published: true
+    }),
     Tags.find(),
     UserPostData.find({
       userId: this.userId

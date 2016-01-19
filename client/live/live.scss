@@ -1,10 +1,20 @@
 .eon-live {
   $positive: #5badf0;
+  $energized: #f0b840;
+  $grey: #aaaaaa;
 
   h1 {
     text-align: center;
   }
 
+  .news-indicator {
+    text-align: center;
+    color: $energized;
+    > * {
+      display: inline;
+      margin: 0 10px;
+    }
+  }
   //.inactive {
   //  cursor: pointer;
   //  -webkit-transform: translate3d(160px, 0px, 0px) scale(0.5);
@@ -51,9 +61,29 @@
         font-weight: bold;
         color: #666;
       }
-      border-left: 6px solid transparent;
+      //border-left: 6px solid transparent;
+      overflow: visible;
+      .item-content {
+        overflow: visible;
+      }
+      .read-indicator {
+        position: absolute;
+        left: 0;
+        top: -1px;
+        bottom: -1px;
+        width: 5px;
+      }
       &.unread {
-        border-left-color: $positive;
+        .read-indicator {
+          display: block;
+          background-color: $positive;
+        }
+      }
+      &.updated {
+        .read-indicator {
+          display: block;
+          background-color: $grey;
+        }
       }
       .item-icon {
         color: #ddd;
@@ -72,6 +102,11 @@
     header {
       background-color: $positive;
       color: #fff;
+      padding-top: 40px;
+      text-align: center;
+      box-shadow:
+        inset 0 4px 8px -2px rgba(0,0,0,.2),
+        0 0 5px 3px rgba(0,0,0,.2);
       .article-meter-ct {
         overflow: hidden;
         font-size: 12px;
@@ -93,10 +128,11 @@
       }
     }
     h2 {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
       color: $positive;
       text-align: center;
+      text-transform: uppercase;
     }
     .list.tags {
       > .item {
@@ -116,6 +152,7 @@
       margin: 4px;
       padding: 4px 8px;
       font-size: 10px;
+      font-weight: bold;
     }
   }
 }
